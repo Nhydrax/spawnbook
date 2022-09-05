@@ -1,7 +1,5 @@
 package com.maxheyn.spawnbook;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 
@@ -9,28 +7,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SpawnbookConfig {
-    public static String configPath = "config/spawnbook.json";
-    public List<JsonObject[]> pages;
-    public String author;
-    public String title;
-    public boolean isDefaultSettings;
+    public static final String CONFIG_PATH = "config/spawnbook.json";
+    private List<JsonObject[]> pages;
+    private String author;
+    private String title;
+    private boolean isDefaultSettings;
 
-    public SpawnbookConfig(List<JsonObject[]> pages, String author, String title){
+    public SpawnbookConfig(List<JsonObject[]> pages, String author, String title) {
         this.pages = pages;
         this.author = author;
         this.title = title;
     }
 
-
-
-    public SpawnbookConfig(List<JsonObject[]> pages, String author, String title, boolean isDefaultSettings){
+    public SpawnbookConfig(List<JsonObject[]> pages, String author, String title, boolean isDefaultSettings) {
         this.pages = pages;
         this.author = author;
         this.title = title;
         this.isDefaultSettings = isDefaultSettings;
     }
 
-    public static SpawnbookConfig getDefaultConfig(){
+    public static SpawnbookConfig getDefaultConfig() {
         List<JsonObject[]> defaultPagesList = new ArrayList<>();
         JsonObject[] defaultPages = new JsonObject[10];
 
@@ -38,7 +34,7 @@ public class SpawnbookConfig {
         String defaultAuthor = "Server Admin";
 
         /* Generate Default Config Book
-        *  This is probably a really stupid way to do it. */
+         *  This is probably a really stupid way to do it. */
         JsonObject jo = new JsonObject();
         jo.add("text", new JsonPrimitive("If you are the "));
         jo.add("color", new JsonPrimitive("reset"));
@@ -94,5 +90,37 @@ public class SpawnbookConfig {
 
         defaultPagesList.add(defaultPages);
         return new SpawnbookConfig(defaultPagesList, defaultAuthor, defaultTitle, false);
+    }
+
+    public List<JsonObject[]> getPages() {
+        return pages;
+    }
+
+    public void setPages(List<JsonObject[]> pages) {
+        this.pages = pages;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public boolean isDefaultSettings() {
+        return isDefaultSettings;
+    }
+
+    public void setDefaultSettings(boolean defaultSettings) {
+        isDefaultSettings = defaultSettings;
     }
 }
